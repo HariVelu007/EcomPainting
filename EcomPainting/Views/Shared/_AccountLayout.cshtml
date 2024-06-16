@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/EcomPainting.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/icons/bootstrap-icons.css">
+</head>
+<body>
+    <div>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-primary border-bottom box-shadow">
+            <div class="container-fluid">
+                <div class="row w-100">
+                    <div class="col-2 fw-bold text-center align-content-center fs-4"><a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Picsart</a></div>
+                    <div class="col-10">
+                       
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row mt-3">
+                <div class="col-7 align-content-center">
+                    <div class="card">
+                        <div class="card-body">
+                            <img class="img-thumbnail" src="~/images/Loginscreen.jpg" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5 align-content-center">
+                    @RenderBody()                    
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

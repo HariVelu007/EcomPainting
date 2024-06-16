@@ -1,0 +1,82 @@
+﻿@using System.Security.Claims
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EcomPainting</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/EcomPainting.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/icons/bootstrap-icons.css">
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-primary border-bottom box-shadow">
+            <div class="container-fluid">
+                <div class="row w-100">
+                    <div class="col-2 fw-bold text-center align-content-center text-light fs-3">Picsart</div>
+                    <div class="col-10">
+                        <div class="navbar-collapse  d-sm-inline-flex justify-content-between">
+                            <ul class="navbar-nav flex-grow-1">
+                                @{
+                                    if (User.IsInRole("User"))
+                                    {
+                                        // <form class="d-flex me-auto">
+                                        //     <div class="input-group mb-1">
+                                        //         <input class="form-control" type="search" placeholder="Search" aria-label="Search" style="width:400px !important">
+                                        //         <button class="btn btn-warning" type="submit"><i class="bi bi-search"></i></button>
+                                        //     </div>
+
+                                        // </form>
+                                        <li class="nav-item ms-auto  ms-auto" title="Home">
+                                            <a class="nav-link text-light" asp-action="Index">
+                                                <i class="bi bi-house-fill fs-4"></i>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item" title="Orders">
+                                            <a class="nav-link text-light" asp-action="Order">
+                                                <i class="bi bi-card-checklist fs-4"></i>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item me-4" title="Cart">
+                                            <a class="nav-link text-light" asp-action="Cart">
+                                                <i class="bi bi-cart-fill fs-4"></i>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button class="btn btn-success">Hi, @User.FindFirst(ClaimTypes.Name).Value <i class="bi bi-person-fill fs-4"></i></button>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="nav-item ms-auto ">
+                                            <button class="btn btn-success">Hi, @User.FindFirst(ClaimTypes.Name).Value <i class="bi bi-person-fill fs-4"></i></button>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - EcomPainting - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

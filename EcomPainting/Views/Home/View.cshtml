@@ -1,0 +1,64 @@
+﻿@model ItemDto
+@{
+}
+<div class="card">
+    <div class="card-header">
+        
+        <a class="btn btn-primary float-end" asp-action="Index">Back</a>
+    </div>
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <img class="img-thumbnail" src=@Url.Content(Model.Url) id="ItemImageDemo" style="height:85%;width:100%" />                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">@Model.Name</label>
+                            
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for=@Model.Description class="form-label"></label>
+                            <textarea class="form-control" asp-for=@Model.Description placeholder="Description" rows="4" readonly></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for=@Model.Material class="form-label"></label>
+                            <select class="form-select" asp-for="@Model.Material" readonly>
+                                <option value="@Material.Canvas">@Material.Canvas</option>
+                                <option value=@Material.Paper>@Material.Paper</option>
+                                <option value=@Material.Cloth>@Material.Cloth</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for=@Model.Type class="form-label"></label>
+                            <select class="form-select" asp-for="@Model.Type" readonly>
+                                <option value="@ItemType.Handmade">@ItemType.Handmade</option>
+                                <option value=@ItemType.Oil>@ItemType.Oil</option>
+                                <option value=@ItemType.Printed>@ItemType.Printed</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for=@Model.Price class="form-label"></label>
+                            <input class="form-control" asp-for=@Model.Price placeholder="Price" readonly />
+                        </div>                    
+                       
+                    </div>
+                    <div class="card-footer text-end">
+                        <div class="mb-3">
+                            <button class="btn btn-lg btn-warning float-start" asp-action="Add" asp-route-id=@Model.Id>Add to Cart</button>
+                            <button class="btn btn-lg btn-success" asp-action="Buy" asp-route-id=@Model.Id>Buy Now</button>                           
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,172 @@
+﻿@model ItemPageDto
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+@* <form asp-action="Index" method="get"> *@
+    <div class="row">
+        @* <div class="col-2 border-1 rounded border-secondary">
+            <div class="accordion" id="acd-sidebar">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="acd-product-type">
+                        <button class="accordion-button collapsed bg-primary text-light" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#clp-product-type" aria-expanded="true"
+                                aria-controls="clp-product-type">
+                            Product Type
+                        </button>
+                    </h2>
+                    <div id="clp-product-type" class="accordion-collapse collapse show" aria-labelledby="accordion-header">
+                        <div class="accordion-body">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" asp-for=@Model.filter.TypeHandmade>
+                                <label class="form-check-label" asp-for=@Model.filter.TypeHandmade>
+                                    Handmade Painting
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" asp-for=@Model.filter.TypeOil>
+                                <label class="form-check-label" asp-for=@Model.filter.TypeOil>
+                                    Oil Painting
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" asp-for=@Model.filter.TypeHandmade>
+                                <label class="form-check-label" asp-for=@Model.filter.TypeHandmade>
+                                    Printed Painting
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="acd-orientation">
+                        <button class="accordion-button collapsed bg-primary text-light" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#clp-orientation" aria-expanded="false"
+                                aria-controls="clp-orientation">
+                            Orientation
+                        </button>
+                    </h2>
+                    <div id="clp-orientation" class="accordion-collapse collapse show" aria-labelledby="acd-orientation">
+                        <div class="accordion-body">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" asp-for=@Model.filter.OrientationLandscape>
+                                <label class="form-check-label" asp-for=@Model.filter.OrientationLandscape>
+                                    Landscape
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" asp-for=@Model.filter.OrientationProtrait>
+                                <label class="form-check-label" asp-for=@Model.filter.OrientationProtrait>
+                                    Portrait
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="acd-price">
+                        <button class="accordion-button collapsed bg-primary text-light" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#clp-price" aria-expanded="false"
+                                aria-controls="clp-price">
+                            Price
+                        </button>
+                    </h2>
+                    <div id="clp-price" class="accordion-collapse collapse show" aria-labelledby="acd-price">
+                        <div class="accordion-body">
+                            <div class="d-flex">
+                                <label class="w-50 form-label" asp-for=@Model.filter.PriceFrom></label>
+                                <label class="w-50 form-label" asp-for=@Model.filter.PriceTo></label>
+                            </div>
+                            <div class="d-flex">
+                                <input class="form-control w-50" asp-for=@Model.filter.PriceFrom placeholder="From">
+                                <input class="form-control w-50" asp-for=@Model.filter.PriceTo placeholder="To">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="acd-material">
+                        <button class="accordion-button collapsed bg-primary text-light" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#clp-material" aria-expanded="false"
+                                aria-controls="clp-material">
+                            Material
+                        </button>
+                    </h2>
+                    <div id="clp-material" class="accordion-collapse collapse show" aria-labelledby="acd-material">
+                        <div class="accordion-body">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" asp-for=@Model.filter.MaterialCanvas>
+                                <label class="form-check-label" asp-for=@Model.filter.MaterialCanvas>
+                                    Canvas
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" asp-for=@Model.filter.MaterialPaper>
+                                <label class="form-check-label" asp-for=@Model.filter.MaterialPaper>
+                                    Paper
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" asp-for=@Model.filter.MaterialCloth>
+                                <label class="form-check-label" asp-for=@Model.filter.MaterialCloth>
+                                    Cloth
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-3 d-flex justify-content-end">
+                    <a class="btn btn-warning btn-lg mx-2 w-50">Clear</a>
+                    <button class="btn btn-primary btn-lg w-50" type="submit">Apply</button>
+                </div>
+            </div>
+        </div> *@
+
+        <div class="col-12">
+            <div class="d-flex flex-row flex-wrap justify-content-center">
+                @foreach (var item in Model.itemList.Items)
+                {
+                    <div class="card p-2 my-1 mx-4" style="width: 18rem">
+                        <img src=@Url.Content(item.Url) class="card-img-top img-fluid" alt="..." style="max-height:225px;max-width:18rem">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Name</h5>
+                            <p class="card-text">@item.Description </p>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-action="Add" asp-route-id="@item.ID" class="btn btn-warning"><i class="bi bi-cart-plus-fill  mx-2"></i>Add to Cart</a>
+                            <a asp-action="View" asp-route-id="@item.ID" class="btn btn-primary"><i class="bi bi-eye-fill mx-2"></i>View</a>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="row mt-2">
+                <div class="col-12">
+                    <div class="d-flex justify-content-center">
+                        <nav>
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Total Record</span>
+                                        <input type="text" class="form-control me-2" value="@Model.itemList.TotalRecords" style="width:70px" disabled>
+                                    </div>
+                                </li>
+                                <li class="page-item @(Model.filter.PageNo==1?"disabled":"")">
+                                    <a class="page-link " asp-action="Index" asp-route-pageNo=@(ViewBag.PageNo-1)>Previous</a>
+                                </li>
+                                @for (int i = 1, pageNumber = 1; i <= Model.itemList.TotalRecords; i = i + 10, pageNumber++)
+                                {
+                                    <li class="page-item"><a class="page-link" asp-action="Index" asp-route-pageNo=@pageNumber>@pageNumber </a></li>
+                                }
+                                <li class="page-item @( Model.itemList.TotalRecords/10 >= Model.filter.PageNo ?"":"disabled")">
+                                    <a class="page-link " asp-action="Index" asp-route-pageNo=@(Model.filter.PageNo+1)>Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@* </form> *@

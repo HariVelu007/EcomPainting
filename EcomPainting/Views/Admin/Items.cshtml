@@ -1,0 +1,90 @@
+﻿@model ItemList
+<div class="modal modal-xl fade" tabindex="-1" id="mViewImage">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Preview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex justify-content-center">
+                <img id="imgItem" class="img-thumbnail" src="" />
+            </div>           
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="card">
+        <div class="card-header d-flex flex-md-row-reverse">
+            
+            <div >
+                <a class="btn btn-primary" asp-action="AddItem">Add</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <tr>                    
+                    <th style="width:120px">Edit / View</th>
+                    <th>Name</th>
+                    <th>Description</th>                    
+                    <th>Material</th>
+                    <th>Type</th>
+                    <th>Price</th>
+                    <th style="width:57px">Delete</th>
+                </tr>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>
+                            <a class="btn btn-primary" asp-action="EditItem" asp-route-id=@item.ID><i class="bi bi-pencil-fill"></i></a>
+                            <button class="btn btn-secondary editBtn" data-bs-toggle="modal" data-url="@Url.Content(@item.Url)"><i class="bi bi-search"></i></button>
+                        </td>                                          
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td>@item.Material</td>
+                        <td>@item.Type</td>
+                        <td>@item.Price</td>
+                        <td>
+                            <a class="btn btn-danger" asp-action="DeleteItem" asp-route-id=@item.ID><i class="bi bi-trash-fill"></i></a>
+                        </td>
+                    </tr>
+                }                
+            </table>
+            <div class="d-flex justify-content-center">
+                <nav>
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Total Record</span>
+                                <input type="text" class="form-control me-2" value="@Model.TotalRecords" style="width:70px" disabled>
+                            </div>
+                        </li>
+                        <li class="page-item @(ViewBag.PageNo==1?"disabled":"")">
+                            <a class="page-link " asp-action="Items" asp-route-pageNo=@(ViewBag.PageNo-1)>Previous</a>
+                        </li>
+                        @for (int i = 1, pageNumber = 1; i <= Model.TotalRecords; i = i + 10, pageNumber++)
+                        {
+                            <li class="page-item"><a class="page-link" asp-action="Items" asp-route-pageNo=@pageNumber>@pageNumber </a></li>
+                        }                      
+                        <li class="page-item @( Model.TotalRecords/10 >= ViewBag.PageNo ?"":"disabled")">
+                            <a class="page-link " asp-action="Items" asp-route-pageNo=@(ViewBag.PageNo+1)>Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+           
+        </div>
+
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $(".editBtn").click(function () {
+                debugger;
+                let url = $(this).attr('data-url');
+                $("#imgItem").attr('src', url);
+                $("#mViewImage").modal('show');
+            });         
+        });
+    </script>
+}
